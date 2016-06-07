@@ -11,8 +11,12 @@ public class Main {
 
     public static void main(String args[]) throws IOException {
         Map yourMap = null;
+        ArrayList<Ship> yourShipsList = new ArrayList<Ship>();
+        FireCoord fireCoord = new FireCoord();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String comand;
+        int fireX;
+        int fireY;
 
         do {
             comand = reader.readLine();
@@ -21,7 +25,6 @@ public class Main {
 
             if(comand.compareTo("start")==0) {
                 yourMap = new Map(11);
-                ArrayList<Ship> yourShipsList = new ArrayList<Ship>();
 
                 yourShipsList.add(new Ship(4));
                 yourShipsList.add(new Ship(3));
@@ -47,7 +50,20 @@ public class Main {
                     System.out.println();
                 }
             }else if(m.matches()){ //координаты для выстрела
+
                 System.out.println("Вы ввели " + comand);
+
+                for(int i=0;i<10;i++){
+                    for(int j=0;j<10;j++){
+                        if(fireCoord.getMassFireCoord(i,j).compareTo(comand) == 0){
+                            fireX = i+1;
+                            fireY = j+1;
+                            System.out.println("координата X " + fireX);
+                            System.out.println("Координата Y " + fireY);
+                        }
+                    }
+                }
+
 
             }else if (comand.compareTo("exit") == 0) {
                 System.out.println("Выхожу из игры");
@@ -153,5 +169,9 @@ public class Main {
                 } else result = false;
             }while(!result);
         }
+    }
+
+    public static void fire(int x, int y){ // метод обработки выстрела
+
     }
 }
