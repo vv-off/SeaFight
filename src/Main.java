@@ -15,8 +15,8 @@ public class Main {
         FireCoord fireCoord = new FireCoord();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String comand;
-        int fireX;
-        int fireY;
+        int fireX = 0;
+        int fireY = 0;
 
         do {
             comand = reader.readLine();
@@ -62,6 +62,10 @@ public class Main {
                             System.out.println("Координата Y " + fireY);
                         }
                     }
+                }
+
+                if(fire(fireX,fireY,yourShipsList)){
+                    System.out.println("Попал");
                 }
 
 
@@ -171,7 +175,24 @@ public class Main {
         }
     }
 
-    public static void fire(int x, int y){ // метод обработки выстрела
-
+    public static boolean fire(int x, int y, ArrayList<Ship> listShip){ // метод обработки выстрела
+            boolean hit = false;
+        int deck = 0;
+            for(int i=0;i<listShip.size();i++){
+                for(int j=0;j<listShip.get(i).getNumberOfDecks();j++) {
+                    if (x == listShip.get(i).getShipCoordX(j) && y == listShip.get(i).getShipCoordY(j)){
+                        hit = true;
+                        listShip.get(i).setShipDestroyed(j,true);
+                        deck=0;
+                        for(int k=0;k<listShip.get(i).getNumberOfDecks();k++) {
+                            if (listShip.get(i).getShipDestroyed(k)){
+                                deck++;
+                            }
+                        }
+                        if(deck == listShip.get(i).getNumberOfDecks()) System.out.println("Корабль убит");
+                    }
+                }
+            }
+        return hit;
     }
 }
