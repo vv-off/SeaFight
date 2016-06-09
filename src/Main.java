@@ -1,8 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,7 +63,14 @@ public class Main {
                     }
                 }
 
-                if(fire(fireX,fireY,yourShipsList)){
+                if(fire(fireX,fireY,yourShipsList, yourMap)){
+
+                    for (int i = 0; i < yourMap.getSizeMap(); i++) {
+                        for (int j = 0; j < yourMap.getSizeMap(); j++) {
+                            System.out.print(yourMap.getMassivMap(i, j) + " ");
+                        }
+                        System.out.println();
+                    }
                     System.out.println("Попал");
                 }
 
@@ -175,24 +181,31 @@ public class Main {
         }
     }
 
-    public static boolean fire(int x, int y, ArrayList<Ship> listShip){ // метод обработки выстрела
+    public static boolean fire(int x, int y, ArrayList<Ship> listShip, Map map){ // метод обработки выстрела
             boolean hit = false;
-        int deck = 0;
+
             for(int i=0;i<listShip.size();i++){
                 for(int j=0;j<listShip.get(i).getNumberOfDecks();j++) {
                     if (x == listShip.get(i).getShipCoordX(j) && y == listShip.get(i).getShipCoordY(j)){
                         hit = true;
                         listShip.get(i).setShipDestroyed(j,true);
-                        deck=0;
-                        for(int k=0;k<listShip.get(i).getNumberOfDecks();k++) {
-                            if (listShip.get(i).getShipDestroyed(k)){
-                                deck++;
-                            }
-                        }
-                        if(deck == listShip.get(i).getNumberOfDecks()) System.out.println("Корабль убит");
+                        map.setMassivMap(3,x,y);
+
+                        if(shipKilled(i,listShip)) System.out.println("Корабль убит");
                     }
                 }
             }
         return hit;
+    }
+
+    public static boolean shipKilled(int i, ArrayList<Ship> listShip){
+        int deck = 0;
+        for(int k=0;k<listShip.get(i).getNumberOfDecks();k++) {//если попали в палубу корабля проверяем не подбили ли мы весь корабль
+            if (listShip.get(i).getShipDestroyed(k)){
+                deck++;
+            }
+        }
+        if(deck == listShip.get(i).getNumberOfDecks()) return true;
+        return false;
     }
 }
