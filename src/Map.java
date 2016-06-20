@@ -9,13 +9,13 @@ public class Map {
         massivMap = new int[sizeMap][sizeMap];
 
         for(int i=0;i<sizeMap;i++){
-            massivMap[i][0] = 0;
-            massivMap[0][i] = 0;
+            massivMap[i][0] = GameProcess.COAST;
+            massivMap[0][i] = GameProcess.COAST;
         }
 
         for(int i=1;i<sizeMap-1;i++){
             for(int j=1;j<sizeMap-1;j++){
-                massivMap[i][j]=1;
+                massivMap[i][j]=GameProcess.WATER;
             }
         }
     }

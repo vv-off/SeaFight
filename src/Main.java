@@ -9,9 +9,28 @@ public class Main {
 
 
     public static void main(String args[]) throws IOException {
-        Map yourMap = null;
+
+        GameCommands commands = new GameCommands();
+    //    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+    //    commands.setCommand(reader.readLine());
+
+/*
+        if(commands.fireCoord()){
+            System.out.println(commands.getYcoordFire());
+            System.out.println(commands.getXcoordFire());
+        } else System.out.println(commands.getCommand());
+*/
+
+
+
+    }
+}
+
+
+    /*    Map yourMap = null;
         ArrayList<Ship> yourShipsList = new ArrayList<Ship>();
-        FireCoord fireCoord = new FireCoord();
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String comand;
         int fireX = 0;
@@ -208,4 +227,4 @@ public class Main {
         if(deck == listShip.get(i).getNumberOfDecks()) return true;
         return false;
     }
-}
+}*/
