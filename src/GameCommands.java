@@ -25,8 +25,9 @@ public class GameCommands {
         return command;
     }
 
+    //регулярное выражение для координат типа a1-j10
     public boolean fireCoord(){
-        Pattern p = Pattern.compile("([a-j][1-9])|[a-j]([1][0])"); //регулярное выражение для координат типа a1-j10
+        Pattern p = Pattern.compile("([a-j][1-9])|[a-j]([1][0])");
         Matcher m = p.matcher(command);
 
         if (m.matches()) {

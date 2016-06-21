@@ -10,18 +10,41 @@ public class Main {
 
     public static void main(String args[]) throws IOException {
 
+        boolean startGame = false;
+        boolean mapDraw = false;
         GameCommands commands = new GameCommands();
-    //    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    //    commands.setCommand(reader.readLine());
 
-/*
-        if(commands.fireCoord()){
-            System.out.println(commands.getYcoordFire());
-            System.out.println(commands.getXcoordFire());
-        } else System.out.println(commands.getCommand());
-*/
 
+
+    do {
+        System.out.println("Введите start для начала игры");
+        commands.setCommand(reader.readLine());
+        start:
+        if (commands.getCommand().compareTo("start") == 0) {
+            System.out.println("Игра началась");
+            //код начала игры
+            do {
+                System.out.println("Введите map чтобы создать карту");
+                commands.setCommand(reader.readLine());
+                if (commands.getCommand().compareTo("start") == 0) break start;
+                if (commands.getCommand().compareTo("map") == 0) {
+                    System.out.println("Карта боя создана");
+                    //код создания карты
+                    do {
+                        System.out.println("Введите коорднаты выстрела: ");
+                        commands.setCommand(reader.readLine());
+                        if (commands.getCommand().compareTo("start") == 0) break start;
+                        if (commands.fireCoord()) {
+                            System.out.println("Огонь");
+                            //код боя
+                        }
+                    } while (commands.getCommand().compareTo("exit") != 0);
+                }
+            } while (commands.getCommand().compareTo("exit") != 0);
+        }
+    } while (commands.getCommand().compareTo("exit") != 0);
 
 
     }
