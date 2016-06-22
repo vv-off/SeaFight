@@ -33,13 +33,4 @@ public class Deck {
         this.destroyed = destroyed;
     }
 
-/*    public boolean isTrueCoord() {
-        return trueCoord;
-    }
-
-    public void setTrueCoord(boolean trueCoord) {
-        this.trueCoord = trueCoord;
-    }
-
-    */
 }

@@ -9,19 +9,43 @@ public class GameProcess {
     public static final int SHIPDECK = 7;
     public static final int SHIPDECKDESTROYED = 9;
 
-    private ArrayList<Ship> shipsList = new ArrayList<Ship>();
-
-    GameProcess(){
-        for(int i=4;i>0;i--){
-            for(int j=i;j<5;j++){
-
-                shipsList.add(new Ship(j));
+    //метод отрисовки карты игрока
+    public static void drawMapYou(Map map){
+        System.out.println("Ваша карта");
+        char[] ch = {'a','b','c','d','e','f','g','h','i','j'};
+        System.out.print("    ");
+        for(int i=0;i<map.getSizeMap()-2;i++) System.out.print(ch[i]+" ");
+        System.out.println();
+        for(int i=1;i<map.getSizeMap()-1;i++){
+            if(i<10)System.out.print(i + "   ");
+            else System.out.print(i + "  ");
+            for(int j=1;j<map.getSizeMap()-1;j++){
+                System.out.print(map.getMassivMap(i,j) + " ");
             }
+            System.out.println();
         }
-
+        System.out.println();
+        System.out.println();
     }
-
-
+    //метод отрисовки карты соперника
+    public static void drawMapComp(Map map){
+        System.out.println("Карта соперника");
+        char[] ch = {'a','b','c','d','e','f','g','h','i','j'};
+        System.out.print("    ");
+        for(int i=0;i<map.getSizeMap()-2;i++) System.out.print(ch[i]+" ");
+        System.out.println();
+        for(int i=1;i<map.getSizeMap()-1;i++){
+            if(i<10)System.out.print(i + "   ");
+            else System.out.print(i + "  ");
+            for(int j=1;j<map.getSizeMap()-1;j++){
+                if(map.getMassivMap(i,j) == SHIPDECK) System.out.print(WATER + " ");
+                else System.out.print(map.getMassivMap(i,j) + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println();
+    }
 
     //проверяем координату палубы
     public static boolean verifCoord(int x, int y, Map map) {

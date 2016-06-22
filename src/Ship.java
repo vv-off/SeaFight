@@ -55,17 +55,4 @@ public class Ship {
         return numberOfDecks;
     }
 
-
-    /*
-    //установить что координаты палуб (в целом корабля) правильные
-    public void setShipTrueCoord (int numDeck, boolean trueCoord){
-        listDeck.get(numDeck).setTrueCoord(trueCoord);
-    }
-
-    //возвращает
-    public boolean getShipTrueCoord(int numDeck){
-        return listDeck.get(numDeck).isTrueCoord();
-    }
-*/
-
 }
