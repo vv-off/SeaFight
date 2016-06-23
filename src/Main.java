@@ -8,7 +8,6 @@ public class Main {
 
     public static void main(String args[]) throws IOException {
 
-
         GameCommands commands = new GameCommands();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -16,6 +15,7 @@ public class Main {
         ArrayList<Ship> compShipList=null;
         Map yourMap = null;
         Map compMap = null;
+        int fireResult;
 
     do {
         System.out.println("Введите start для начала игры");
@@ -43,10 +43,10 @@ public class Main {
                     //устанавливаем корабли на созданной карте и рисуем карту
                     GameProcess.setShips(yourShipList,yourMap);
                     GameProcess.setShips(compShipList,compMap);
-
-                    GameProcess.drawMapYou(yourMap);
-                    GameProcess.drawMapComp(compMap);
-
+                    //рисуем карты компьютера и игрока
+                    GameProcess.drawMap(yourMap,true);
+                    GameProcess.drawMap(compMap,false);
+                    //цикл выстрелов игроков
                     do {
                         System.out.println("Введите коорднаты выстрела: ");
                         commands.setCommand(reader.readLine());
@@ -54,13 +54,28 @@ public class Main {
                         if (commands.fireCoord()) {
                             System.out.println("Огонь");
                             //код боя
+                            fireResult = GameProcess.fire(compShipList,compMap,commands.getXcoordFire(),commands.getYcoordFire());
+                            GameProcess.messageFireResult(fireResult);
+                            GameProcess.drawMap(compMap,false);
+                            if(GameProcess.hit(fireResult)) {
+                                //проверка на победу игрока
+                                if(GameProcess.win(fireResult)){
+                                    commands.setCommand("exit");
+                                }
+                            }else{
+                               do{
+                                   //код стрельбы компьютера
+                                   //пока заглушка
+                                   System.out.println("Компьютер промахнулся");
+                                   fireResult = 3;
+                               }while(GameProcess.hit(fireResult));
+                            }
                         }
                     } while (commands.getCommand().compareTo("exit") != 0);
                 }
             } while (commands.getCommand().compareTo("exit") != 0);
         }
     } while (commands.getCommand().compareTo("exit") != 0);
-
     }
 }
 

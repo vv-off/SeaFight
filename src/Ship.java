@@ -4,6 +4,15 @@ public class Ship {
     private int numberOfDecks;
     private ArrayList<Deck> listDeck = new ArrayList();
     private int numDeckDestroyed = 0;
+    private boolean shipDestroyed;
+
+    public boolean getShipDestroyed() {
+        return shipDestroyed;
+    }
+
+    public void setShipDestroyed(boolean shipDestroyed) {
+        this.shipDestroyed = shipDestroyed;
+    }
 
     //в конструкторе создаём и добавляем объекты типа Deck в коллекцию
     //в итоге у нас получается корабль из коллекции палуб
@@ -21,7 +30,7 @@ public class Ship {
     }
 
     //установить признак разрушения палубы корабля
-    public void setShipDestroyed(int numDeck, boolean destroyed){
+    public void setShipDestroyedDeck(int numDeck, boolean destroyed){
         listDeck.get(numDeck).setDestroyed(destroyed);
     }
 
@@ -36,7 +45,7 @@ public class Ship {
     }
 
     //взять признак разрушения палубы корабля
-    public boolean getShipDestroyed(int numDeck){
+    public boolean getShipDestroyedDeck(int numDeck){
         return  listDeck.get(numDeck).isDestroyed();
     }
 
