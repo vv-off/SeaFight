@@ -1,4 +1,4 @@
-import java.util.Random;
+package com.github.woff.SeaFigh;
 
 public class Map {
     private int massivMap[][];
@@ -10,18 +10,18 @@ public class Map {
     public static final int SHIPDECKDESTROYED = 9;
     public static final int BOSS_SHOT = 3;
 
-    Map(int size){ //инициализируем поле боя нулями
+    Map(int size) { //инициализируем поле боя нулями
         sizeMap = size;
         massivMap = new int[sizeMap][sizeMap];
 
-        for(int i=0;i<sizeMap;i++){
+        for (int i = 0; i < sizeMap; i++) {
             massivMap[i][0] = COAST;
             massivMap[0][i] = COAST;
         }
 
-        for(int i=1;i<sizeMap-1;i++){
-            for(int j=1;j<sizeMap-1;j++){
-                massivMap[i][j]=WATER;
+        for (int i = 1; i < sizeMap - 1; i++) {
+            for (int j = 1; j < sizeMap - 1; j++) {
+                massivMap[i][j] = WATER;
             }
         }
     }

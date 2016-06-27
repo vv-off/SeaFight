@@ -1,11 +1,11 @@
+package com.github.woff.SeaFigh;
 
 public class Deck {
     private int x;
     private int y;
     private boolean destroyed;
-    private boolean trueCoord;
 
-    Deck(){
+    Deck() {
         destroyed = false;
     }
 
