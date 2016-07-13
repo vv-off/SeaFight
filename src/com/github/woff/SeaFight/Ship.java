@@ -1,10 +1,11 @@
-package com.github.woff.SeaFigh;
+package com.github.woff.SeaFight;
 
 import java.util.ArrayList;
 
 public class Ship {
+
     private int numberOfDecks;
-    private ArrayList<Deck> listDeck = new ArrayList();
+    private ArrayList<Deck> listDeck = new ArrayList<Deck>();
     private int numDeckDestroyed = 0;
     private boolean shipDestroyed;
 
@@ -31,11 +32,6 @@ public class Ship {
         listDeck.get(numDeck).setY(y);
     }
 
-    //установить признак разрушения палубы корабля
-    public void setShipDestroyedDeck(int numDeck, boolean destroyed) {
-        listDeck.get(numDeck).setDestroyed(destroyed);
-    }
-
     //взять координату X палубы корабля
     public int getShipCoordX(int numDeck) {
         return listDeck.get(numDeck).getX();
@@ -46,24 +42,18 @@ public class Ship {
         return listDeck.get(numDeck).getY();
     }
 
-    //взять признак разрушения палубы корабля
-    public boolean getShipDestroyedDeck(int numDeck) {
-        return listDeck.get(numDeck).isDestroyed();
-    }
-
-    //взять количество разрушенных палуб корабля
-    public int getNumDeckDestroyed() {
-        return numDeckDestroyed;
-    }
-
-    //установить количество разрушенных палуб корабля
-    public void setNumDeckDestroyed(int numDeckDestroyed) {
-        this.numDeckDestroyed = numDeckDestroyed;
-    }
-
     //взять количество палуб
     public int getNumberOfDecks() {
         return numberOfDecks;
     }
 
+    //установить признак разрушения палубы корабля
+    public void setShipDestroyedDeck(int numDeck, boolean destroyed) {
+        listDeck.get(numDeck).setDestroyed(destroyed);
+    }
+
+    public boolean getShipDestroyedDeck(int numDeck) {
+        return listDeck.get(numDeck).isDestroyed();
+    }
 }
+

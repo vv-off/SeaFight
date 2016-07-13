@@ -1,4 +1,4 @@
-package com.github.woff.SeaFigh;
+package com.github.woff.SeaFight;
 
 public class Deck {
     private int x;
@@ -32,5 +32,4 @@ public class Deck {
     public void setDestroyed(boolean destroyed) {
         this.destroyed = destroyed;
     }
-
 }
